@@ -7,6 +7,7 @@ OCRAMONE
 <title>Ride Fuel</title>
 
 <style>
+
 body{
   font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   background:#f5f5f5;
@@ -97,14 +98,102 @@ input,select,textarea{
   background:white
 }
 
-.duration{
+
+/* =========================
+   TIME PICKER STYLE IPHONE
+========================= */
+
+.time-picker{
   display:flex;
-  gap:8px
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin-top:4px;
+  padding:4px 0;
 }
 
-.duration input{
-  width:50%
+.picker-column{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  width:105px;
 }
+
+.picker-label{
+  font-size:12px;
+  color:#777;
+  margin-bottom:5px;
+}
+
+.picker-wheel{
+  position:relative;
+  width:105px;
+  height:126px;
+  overflow:hidden;
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+  cursor:grab;
+  border-radius:14px;
+}
+
+.picker-wheel:active{
+  cursor:grabbing;
+}
+
+/* zone centrale sélectionnée */
+
+.picker-wheel::after{
+  content:"";
+  position:absolute;
+  left:4px;
+  right:4px;
+  top:42px;
+  height:42px;
+  border-radius:10px;
+  background:#f1f1f1;
+  z-index:0;
+  pointer-events:none;
+}
+
+.picker-values{
+  position:absolute;
+  width:100%;
+  top:0;
+  z-index:1;
+  transition:transform .16s ease;
+}
+
+.picker-number{
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+  font-weight:500;
+  opacity:.25;
+  transition:
+    opacity .16s ease,
+    transform .16s ease,
+    font-size .16s ease;
+}
+
+.picker-number.selected{
+  opacity:1;
+  font-size:28px;
+  font-weight:600;
+}
+
+.time-separator{
+  font-size:30px;
+  font-weight:600;
+  margin-top:25px;
+}
+
+
+/* =========================
+   STATS
+========================= */
 
 .stats{
   display:flex;
@@ -142,7 +231,9 @@ textarea{
 }
 
 
-/* FORMAT + QUANTITÉ */
+/* =========================
+   FORMAT + QUANTITÉ
+========================= */
 
 .portion-row{
   display:flex;
@@ -166,7 +257,9 @@ textarea{
 }
 
 
-/* AUTRE */
+/* =========================
+   AUTRE
+========================= */
 
 .other-grid{
   display:grid;
@@ -204,7 +297,9 @@ textarea{
 }
 
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:500px){
 
@@ -220,7 +315,21 @@ textarea{
   .portion-row input{
     width:75px
   }
+
+  .picker-column{
+    width:100px;
+  }
+
+  .picker-wheel{
+    width:100px;
+  }
+
+  .time-picker{
+    gap:4px;
+  }
+
 }
+
 </style>
 </head>
 
@@ -230,48 +339,97 @@ textarea{
 <main>
 
 <h1>Ride Fuel 🚴</h1>
-<div class="sub">Nutrition pour tes sorties vélo</div>
+
+<div class="sub">
+Nutrition pour tes sorties vélo
+</div>
 
 
-<!-- DURÉE -->
+<!-- =========================
+     DURÉE
+========================= -->
 
 <div class="card">
 
 <h2>⏱️ Durée</h2>
 
-<div class="duration">
+<div class="time-picker">
 
-<select id="hours">
-  <option value="0">0 h</option>
-  <option value="1">1 h</option>
-  <option value="2">2 h</option>
-  <option value="3">3 h</option>
-  <option value="4">4 h</option>
-  <option value="5">5 h</option>
-  <option value="6">6 h</option>
-</select>
 
-<select id="minutes">
-  <option value="0">00 min</option>
-  <option value="5">05 min</option>
-  <option value="10">10 min</option>
-  <option value="15">15 min</option>
-  <option value="20">20 min</option>
-  <option value="25">25 min</option>
-  <option value="30">30 min</option>
-  <option value="35">35 min</option>
-  <option value="40">40 min</option>
-  <option value="45">45 min</option>
-  <option value="50">50 min</option>
-  <option value="55">55 min</option>
-</select>
+  <!-- HEURES -->
+
+  <div class="picker-column">
+
+    <div class="picker-label">
+      heures
+    </div>
+
+    <div
+      class="picker-wheel"
+      id="hoursWheel"
+    >
+
+      <div
+        class="picker-values"
+        id="hoursValues"
+      ></div>
+
+    </div>
+
+  </div>
+
+
+  <div class="time-separator">
+    :
+  </div>
+
+
+  <!-- MINUTES -->
+
+  <div class="picker-column">
+
+    <div class="picker-label">
+      minutes
+    </div>
+
+    <div
+      class="picker-wheel"
+      id="minutesWheel"
+    >
+
+      <div
+        class="picker-values"
+        id="minutesValues"
+      ></div>
+
+    </div>
+
+  </div>
+
 
 </div>
 
+
+<!-- Valeurs utilisées par le calcul -->
+
+<input
+  type="hidden"
+  id="hours"
+  value="0"
+>
+
+<input
+  type="hidden"
+  id="minutes"
+  value="0"
+>
+
 </div>
 
 
-<!-- BAAM -->
+<!-- =========================
+     BAAM
+========================= -->
 
 <div class="card">
 
@@ -282,7 +440,9 @@ textarea{
 </div>
 
 
-<!-- GELS -->
+<!-- =========================
+     GELS
+========================= -->
 
 <div class="card">
 
@@ -293,7 +453,9 @@ textarea{
 </div>
 
 
-<!-- COCA -->
+<!-- =========================
+     COCA
+========================= -->
 
 <div class="card">
 
@@ -307,9 +469,20 @@ textarea{
 
 <select id="cokeSize">
 
-<option value="100">100 ml</option>
-<option value="330" selected>330 ml</option>
-<option value="500">500 ml</option>
+<option value="100">
+100 ml
+</option>
+
+<option
+  value="330"
+  selected
+>
+330 ml
+</option>
+
+<option value="500">
+500 ml
+</option>
 
 </select>
 
@@ -319,7 +492,8 @@ textarea{
   min="0"
   step="1"
   value="0"
-  placeholder="Qté">
+  placeholder="Qté"
+>
 
 </div>
 
@@ -330,11 +504,13 @@ Taille × nombre de canettes / bouteilles
 </div>
 
 
-<!-- BIÈRE -->
+<!-- =========================
+     BIÈRE
+========================= -->
 
 <div class="card">
 
-<h2>🍺 Heineken</h2>
+<h2>🍺 Bière</h2>
 
 <div class="info">
 Valeur estimative · environ 43 kcal et 3,5 g glucides / 100 ml
@@ -344,8 +520,13 @@ Valeur estimative · environ 43 kcal et 3,5 g glucides / 100 ml
 
 <select id="beerSize">
 
-<option value="250">250 ml</option>
-<option value="500">500 ml</option>
+<option value="250">
+250 ml
+</option>
+
+<option value="500">
+500 ml
+</option>
 
 </select>
 
@@ -355,7 +536,8 @@ Valeur estimative · environ 43 kcal et 3,5 g glucides / 100 ml
   min="0"
   step="1"
   value="0"
-  placeholder="Qté">
+  placeholder="Qté"
+>
 
 </div>
 
@@ -366,7 +548,9 @@ Taille du verre × nombre de bières
 </div>
 
 
-<!-- AUTRE -->
+<!-- =========================
+     AUTRE
+========================= -->
 
 <div class="card">
 
@@ -374,10 +558,21 @@ Taille du verre × nombre de bières
 
 <div class="other-header">
 
-<div>Aliment</div>
-<div>kcal</div>
-<div>glucides</div>
-<div>Qté</div>
+<div>
+Aliment
+</div>
+
+<div>
+kcal
+</div>
+
+<div>
+glucides
+</div>
+
+<div>
+Qté
+</div>
 
 </div>
 
@@ -385,7 +580,8 @@ Taille du verre × nombre de bières
 
 <button
   class="add-other"
-  id="addOther">
+  id="addOther"
+>
 
 + Ajouter un aliment
 
@@ -398,7 +594,9 @@ Les kcal et glucides sont indiqués pour une seule unité.
 </div>
 
 
-<!-- ATHLETIC FUEL -->
+<!-- =========================
+     ATHLETIC FUEL
+========================= -->
 
 <div class="card">
 
@@ -413,7 +611,9 @@ Les kcal et glucides sont indiqués pour une seule unité.
 </div>
 
 
-<!-- TOTAL -->
+<!-- =========================
+     TOTAL
+========================= -->
 
 <div class="card">
 
@@ -422,26 +622,51 @@ Les kcal et glucides sont indiqués pour une seule unité.
 <div class="stats">
 
 <div class="stat">
-<b id="totalCarbs">0</b>
-<span>g glucides</span>
+
+<b id="totalCarbs">
+0
+</b>
+
+<span>
+g glucides
+</span>
+
 </div>
+
 
 <div class="stat">
-<b id="totalKcal">0</b>
-<span>kcal</span>
+
+<b id="totalKcal">
+0
+</b>
+
+<span>
+kcal
+</span>
+
 </div>
+
 
 <div class="stat">
-<b id="carbsHour">0</b>
-<span>g/h</span>
-</div>
+
+<b id="carbsHour">
+0
+</b>
+
+<span>
+g/h
+</span>
 
 </div>
 
 </div>
 
+</div>
 
-<!-- STRAVA -->
+
+<!-- =========================
+     STRAVA
+========================= -->
 
 <div class="card">
 
@@ -449,18 +674,20 @@ Les kcal et glucides sont indiqués pour une seule unité.
 
 <textarea
   id="description"
-  readonly>
-</textarea>
+  readonly
+></textarea>
 
 <button
   class="copy"
-  id="copy">
+  id="copy"
+>
 
 Copier
 
 </button>
 
 </div>
+
 
 </main>
 
@@ -540,12 +767,388 @@ for(
 
 
 /* =========================
+   TIME PICKER
+========================= */
+
+var hoursPicker = {
+
+  value:0,
+
+  min:0,
+
+  max:24,
+
+  wheel:
+    document.getElementById(
+      "hoursWheel"
+    ),
+
+  values:
+    document.getElementById(
+      "hoursValues"
+    ),
+
+  input:
+    document.getElementById(
+      "hours"
+    )
+
+};
+
+
+var minutesPicker = {
+
+  value:0,
+
+  min:0,
+
+  max:59,
+
+  wheel:
+    document.getElementById(
+      "minutesWheel"
+    ),
+
+  values:
+    document.getElementById(
+      "minutesValues"
+    ),
+
+  input:
+    document.getElementById(
+      "minutes"
+    )
+
+};
+
+
+function drawPicker(
+  picker
+){
+
+  picker.values.innerHTML="";
+
+
+  for(
+    var i=picker.min;
+    i<=picker.max;
+    i++
+  ){
+
+    var number=
+      document.createElement(
+        "div"
+      );
+
+    number.className=
+      "picker-number";
+
+
+    number.textContent=
+      picker===minutesPicker
+      ? String(i).padStart(2,"0")
+      : i;
+
+
+    picker.values.appendChild(
+      number
+    );
+
+  }
+
+
+  updatePicker(
+    picker,
+    false
+  );
+
+}
+
+
+function updatePicker(
+  picker,
+  shouldCalculate
+){
+
+  picker.input.value=
+    picker.value;
+
+
+  var numbers=
+    picker.values.querySelectorAll(
+      ".picker-number"
+    );
+
+
+  numbers.forEach(
+    function(number,index){
+
+      var currentIndex=
+        picker.value-picker.min;
+
+
+      number.classList.toggle(
+        "selected",
+        index===currentIndex
+      );
+
+    }
+  );
+
+
+  /*
+     Chaque ligne fait 42px.
+     On place la valeur sélectionnée
+     au milieu de la fenêtre.
+  */
+
+  var offset=
+    42 -
+    (
+      picker.value-picker.min
+    )*42;
+
+
+  picker.values.style.transform=
+    "translateY("+offset+"px)";
+
+
+  if(
+    shouldCalculate
+  ){
+
+    calculate();
+
+  }
+
+}
+
+
+function changePicker(
+  picker,
+  amount
+){
+
+  var newValue=
+    picker.value+amount;
+
+
+  if(
+    newValue<
+    picker.min
+  ){
+
+    newValue=
+      picker.min;
+
+  }
+
+
+  if(
+    newValue>
+    picker.max
+  ){
+
+    newValue=
+      picker.max;
+
+  }
+
+
+  if(
+    newValue===
+    picker.value
+  ){
+
+    return;
+
+  }
+
+
+  picker.value=
+    newValue;
+
+
+  updatePicker(
+    picker,
+    true
+  );
+
+}
+
+
+function setupPicker(
+  picker
+){
+
+  var startY=0;
+
+  var lastY=0;
+
+  var accumulated=0;
+
+
+  picker.wheel.addEventListener(
+
+    "touchstart",
+
+    function(e){
+
+      startY=
+        e.touches[0].clientY;
+
+      lastY=
+        startY;
+
+      accumulated=0;
+
+    },
+
+    {
+      passive:true
+    }
+
+  );
+
+
+  picker.wheel.addEventListener(
+
+    "touchmove",
+
+    function(e){
+
+      var currentY=
+        e.touches[0].clientY;
+
+
+      var difference=
+        lastY-currentY;
+
+
+      accumulated+=
+        difference;
+
+
+      lastY=
+        currentY;
+
+
+      /*
+         42px = environ 1 valeur.
+         Cela permet un défilement naturel.
+      */
+
+      while(
+        accumulated>=21
+      ){
+
+        changePicker(
+          picker,
+          1
+        );
+
+        accumulated-=21;
+
+      }
+
+
+      while(
+        accumulated<=-21
+      ){
+
+        changePicker(
+          picker,
+          -1
+        );
+
+        accumulated+=21;
+
+      }
+
+    },
+
+    {
+      passive:true
+    }
+
+  );
+
+
+  /*
+     Permet aussi de tester à la molette
+     sur ordinateur.
+  */
+
+  picker.wheel.addEventListener(
+
+    "wheel",
+
+    function(e){
+
+      e.preventDefault();
+
+
+      if(
+        e.deltaY>0
+      ){
+
+        changePicker(
+          picker,
+          1
+        );
+
+      }else{
+
+        changePicker(
+          picker,
+          -1
+        );
+
+      }
+
+    },
+
+    {
+      passive:false
+    }
+
+  );
+
+}
+
+
+drawPicker(
+  hoursPicker
+);
+
+drawPicker(
+  minutesPicker
+);
+
+
+setupPicker(
+  hoursPicker
+);
+
+setupPicker(
+  minutesPicker
+);
+
+
+/* =========================
    AFFICHAGE BAAM / GELS
 ========================= */
 
-function draw(cat,id){
+function draw(
+  cat,
+  id
+){
 
-  var box=document.getElementById(id);
+  var box=
+    document.getElementById(
+      id
+    );
+
 
   for(
     let i=0;
@@ -555,14 +1158,26 @@ function draw(cat,id){
 
     if(
       foods[i].cat!==cat
-    ) continue;
+    ){
 
-    let f=foods[i];
+      continue;
+
+    }
+
+
+    let f=
+      foods[i];
+
 
     let row=
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
-    row.className="item";
+
+    row.className=
+      "item";
+
 
     row.innerHTML=
 
@@ -593,7 +1208,9 @@ function draw(cat,id){
 
 
     let q=
-      row.querySelector(".qty");
+      row.querySelector(
+        ".qty"
+      );
 
 
     row.querySelector(
@@ -603,11 +1220,15 @@ function draw(cat,id){
       if(
         quantities[i]>0
       ){
+
         quantities[i]--;
+
       }
+
 
       q.textContent=
         quantities[i];
+
 
       calculate();
 
@@ -620,24 +1241,35 @@ function draw(cat,id){
 
       quantities[i]++;
 
+
       q.textContent=
         quantities[i];
+
 
       calculate();
 
     };
 
 
-    box.appendChild(row);
+    box.appendChild(
+      row
+    );
 
   }
 
 }
 
 
-draw("baam","baam");
+draw(
+  "baam",
+  "baam"
+);
 
-draw("gels","gels");
+
+draw(
+  "gels",
+  "gels"
+);
 
 
 /* =========================
@@ -670,7 +1302,9 @@ function createOtherFood(){
 
 
   var row=
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
 
   row.className=
@@ -763,14 +1397,18 @@ function createOtherFood(){
       1
     );
 
+
     row.remove();
+
 
     calculate();
 
   };
 
 
-  container.appendChild(row);
+  container.appendChild(
+    row
+  );
 
 }
 
@@ -806,7 +1444,8 @@ for(
     );
 
 
-  option.value=g;
+  option.value=
+    g;
 
 
   option.textContent=
@@ -851,13 +1490,18 @@ function calculate(){
       quantities[i];
 
 
-    if(n>0){
+    if(
+      n>0
+    ){
 
       carbs+=
-        n*foods[i].carbs;
+        n*
+        foods[i].carbs;
+
 
       kcal+=
-        n*foods[i].kcal;
+        n*
+        foods[i].kcal;
 
 
       if(
@@ -865,19 +1509,23 @@ function calculate(){
       ){
 
         lines.push(
+
           "🍪 "+
           n+
           "× "+
           foods[i].name
+
         );
 
       }else{
 
         lines.push(
+
           "🧃 "+
           n+
           "× "+
           foods[i].name
+
         );
 
       }
@@ -896,6 +1544,7 @@ function calculate(){
       ).value
     );
 
+
   var cokeQty=
     Number(
       document.getElementById(
@@ -904,18 +1553,23 @@ function calculate(){
     )||0;
 
 
-  if(cokeQty>0){
+  if(
+    cokeQty>0
+  ){
 
     var cokeMl=
-      cokeSize*cokeQty;
+      cokeSize*
+      cokeQty;
 
 
     carbs+=
-      cokeMl*0.106;
+      cokeMl*
+      0.106;
 
 
     kcal+=
-      cokeMl*0.42;
+      cokeMl*
+      0.42;
 
 
     lines.push(
@@ -949,18 +1603,23 @@ function calculate(){
     )||0;
 
 
-  if(beerQty>0){
+  if(
+    beerQty>0
+  ){
 
     var beerMl=
-      beerSize*beerQty;
+      beerSize*
+      beerQty;
 
 
     carbs+=
-      beerMl*0.035;
+      beerMl*
+      0.035;
 
 
     kcal+=
-      beerMl*0.43;
+      beerMl*
+      0.43;
 
 
     lines.push(
@@ -969,7 +1628,7 @@ function calculate(){
       beerQty+
       "× "+
       beerSize+
-      " ml Heineken"
+      " ml Bière"
 
     );
 
@@ -1020,13 +1679,18 @@ function calculate(){
   /* ATHLETIC FUEL */
 
   var grams=
-    Number(fuel.value)||0;
+    Number(
+      fuel.value
+    )||0;
 
 
-  if(grams>0){
+  if(
+    grams>0
+  ){
 
     carbs+=
-      grams*0.94;
+      grams*
+      0.94;
 
 
     lines.push(
@@ -1050,7 +1714,8 @@ function calculate(){
           "hours"
         ).value
       )||0
-    )*60+
+    )*
+    60+
 
     (
       Number(
@@ -1098,7 +1763,10 @@ function calculate(){
     "h"+
     String(
       minutes%60
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
 
   /* DESCRIPTION STRAVA */
@@ -1107,7 +1775,7 @@ function calculate(){
     "description"
   ).value=
 
-    "⛽​ Nutrition — "+
+    "🍽️ Nutrition — "+
     duration+
 
     "\n\n"+
@@ -1136,33 +1804,27 @@ function calculate(){
 ========================= */
 
 document.getElementById(
-  "hours"
-).oninput=calculate;
-
-
-document.getElementById(
-  "minutes"
-).oninput=calculate;
-
-
-document.getElementById(
   "cokeSize"
-).onchange=calculate;
+).onchange=
+  calculate;
 
 
 document.getElementById(
   "cokeQty"
-).oninput=calculate;
+).oninput=
+  calculate;
 
 
 document.getElementById(
   "beerSize"
-).onchange=calculate;
+).onchange=
+  calculate;
 
 
 document.getElementById(
   "beerQty"
-).oninput=calculate;
+).oninput=
+  calculate;
 
 
 fuel.onchange=
