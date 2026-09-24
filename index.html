@@ -1158,6 +1158,52 @@ document.getElementById(
 fuel.onchange=
   calculate;
 
+<div class="strava-section">
+  <h2>🚴 Choisir la sortie Strava</h2>
+
+  <div class="activity-selector" id="activitySelector">
+
+    <button class="nav-btn" id="prevActivity">←</button>
+
+    <div class="activity-card" id="activityCard">
+      <div class="activity-position" id="activityPosition">
+        1 / 5
+      </div>
+
+      <h3 id="activityName">Morning Ride</h3>
+
+      <div class="activity-sport" id="activitySport">
+        🚴 Vélo
+      </div>
+
+      <div class="activity-info">
+        <div>
+          <span>📅</span>
+          <strong id="activityDate">24 sept. 2026</strong>
+        </div>
+
+        <div>
+          <span>📏</span>
+          <strong id="activityDistance">64.8 km</strong>
+        </div>
+
+        <div>
+          <span>⏱️</span>
+          <strong id="activityDuration">2h07</strong>
+        </div>
+      </div>
+    </div>
+
+    <button class="nav-btn" id="nextActivity">→</button>
+
+  </div>
+
+  <button class="send-strava-btn" id="sendStrava">
+    🚀 Utiliser cette sortie
+  </button>
+
+  <div class="strava-message" id="stravaMessage"></div>
+</div>
 
 /* =========================
    COPIER
