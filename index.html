@@ -544,54 +544,283 @@ By OCRAMONE
 
 </div>
 
-
 <!-- =========================
-     COCA
+     BOISSONS
 ========================= -->
 
-<div class="card">
+<div class="food-category">
 
-<h2>🥤 Coca-Cola</h2>
+  <button
+    class="category-header"
+    type="button"
+    onclick="toggleCategory(this)"
+  >
 
-<div class="info">
-10,6 g glucides · 42 kcal / 100 ml
-</div>
+    <span>🥤 Boissons</span>
 
-<div class="portion-row">
+    <span class="category-arrow">
+      ›
+    </span>
 
-<select id="cokeSize">
+  </button>
 
-<option value="100">
-100 ml
-</option>
+  <div class="category-content" id="drinks">
 
-<option
-  value="330"
-  selected
->
-330 ml
-</option>
+    <!-- COCA -->
 
-<option value="500">
-500 ml
-</option>
+    <div class="card">
 
-</select>
+      <h2>🥤 Coca-Cola</h2>
 
-<input
-  id="cokeQty"
-  type="number"
-  min="0"
-  step="1"
-  value="0"
-  placeholder="Qté"
->
+      <div class="info">
+        10,6 g glucides · 42 kcal / 100 ml
+      </div>
 
-</div>
+      <div class="portion-row">
 
-<div class="quantity-label">
-Taille × nombre de canettes / bouteilles
-</div>
+        <select id="cokeSize">
+
+          <option value="100">
+            100 ml
+          </option>
+
+          <option
+            value="330"
+            selected
+          >
+            330 ml
+          </option>
+
+          <option value="500">
+            500 ml
+          </option>
+
+        </select>
+
+        <input
+          id="cokeQty"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          placeholder="Qté"
+        >
+
+      </div>
+
+      <div class="quantity-label">
+        Taille × nombre de canettes / bouteilles
+      </div>
+
+    </div>
+
+
+    <!-- RED BULL -->
+
+    <div class="card">
+
+      <h2>⚡ Red Bull</h2>
+
+      <div class="info">
+        11 g glucides · 46 kcal / 100 ml
+      </div>
+
+      <div class="portion-row">
+
+        <select id="redbullSize">
+
+          <option value="250" selected>
+            250 ml
+          </option>
+
+          <option value="355">
+            355 ml
+          </option>
+
+        </select>
+
+        <input
+          id="redbullQty"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          placeholder="Qté"
+        >
+
+      </div>
+
+      <div class="quantity-label">
+        Taille × nombre de canettes
+      </div>
+
+    </div>
+
+
+    <!-- MONSTER -->
+
+    <div class="card">
+
+      <h2>⚡ Monster Ultra White</h2>
+
+      <div class="info">
+        Environ 0,9 g glucides · 3 kcal / 100 ml
+      </div>
+
+      <div class="portion-row">
+
+        <select id="monsterSize">
+
+          <option value="500" selected>
+            500 ml
+          </option>
+
+        </select>
+
+        <input
+          id="monsterQty"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          placeholder="Qté"
+        >
+
+      </div>
+
+      <div class="quantity-label">
+        Taille × nombre de canettes
+      </div>
+
+    </div>
+
+
+    <!-- ORANGINA -->
+
+    <div class="card">
+
+      <h2>🍊 Orangina</h2>
+
+      <div class="info">
+        Environ 9,3 g glucides · 39 kcal / 100 ml
+      </div>
+
+      <div class="portion-row">
+
+        <select id="oranginaSize">
+
+          <option value="250" selected>
+            250 ml
+          </option>
+
+          <option value="500">
+            500 ml
+          </option>
+
+        </select>
+
+        <input
+          id="oranginaQty"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          placeholder="Qté"
+        >
+
+      </div>
+
+      <div class="quantity-label">
+        Taille × nombre de bouteilles / canettes
+      </div>
+
+    </div>
+
+
+    <!-- FANTA -->
+
+    <div class="card">
+
+      <h2>🍊 Fanta</h2>
+
+      <div class="info">
+        6,5 g glucides · 27 kcal / 100 ml
+      </div>
+
+      <div class="portion-row">
+
+        <select id="fantaSize">
+
+          <option value="330" selected>
+            330 ml
+          </option>
+
+          <option value="500">
+            500 ml
+          </option>
+
+        </select>
+
+        <input
+          id="fantaQty"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          placeholder="Qté"
+        >
+
+      </div>
+
+      <div class="quantity-label">
+        Taille × nombre de canettes / bouteilles
+      </div>
+
+    </div>
+
+
+    <!-- OASIS -->
+
+    <div class="card">
+
+      <h2>🥭 Oasis</h2>
+
+      <div class="info">
+        Environ 6,1 g glucides · 26 kcal / 100 ml
+      </div>
+
+      <div class="portion-row">
+
+        <select id="oasisSize">
+
+          <option value="330" selected>
+            330 ml
+          </option>
+
+          <option value="500">
+            500 ml
+          </option>
+
+        </select>
+
+        <input
+          id="oasisQty"
+          type="number"
+          min="0"
+          step="1"
+          value="0"
+          placeholder="Qté"
+        >
+
+      </div>
+
+      <div class="quantity-label">
+        Taille × nombre de canettes / bouteilles
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
@@ -836,10 +1065,52 @@ var foods = [
 },
 
 {
+  cat:"baam",
+  name:"TA Energy Gummies",
+  kcal:96,
+  carbs:24
+},
+
+{
+  cat:"baam",
+  name:"Maurten Solid 225",
+  kcal:225,
+  carbs:44
+},
+
+{
+  cat:"baam",
+  name:"CLIF Bar Crunchy Peanut Butter",
+  kcal:264,
+  carbs:36
+},
+
+{
   cat:"gels",
   name:"Nduranz Fraise NRGY Gel",
   kcal:180,
   carbs:45
+},
+
+{
+  cat:"gels",
+  name:"Maurten Gel 100",
+  kcal:100,
+  carbs:25
+},
+
+{
+  cat:"gels",
+  name:"Maurten Gel 100 CAF 100",
+  kcal:100,
+  carbs:25
+},
+
+{
+  cat:"gels",
+  name:"TA Energy Gel",
+  kcal:132,
+  carbs:33
 }
 
 ];
@@ -1584,7 +1855,7 @@ function calculate(){
   var lines=[];
 
 
-  /* BAAM + GELS */
+  /* BARRES + GELS */
 
   for(
     var i=0;
@@ -1691,9 +1962,216 @@ function calculate(){
   }
 
 
+  /* AUTRES BOISSONS */
+
+  var redbullSize =
+    Number(
+      document.getElementById(
+        "redbullSize"
+      ).value
+    );
+
+  var redbullQty =
+    Number(
+      document.getElementById(
+        "redbullQty"
+      ).value
+    )||0;
+
+  if(
+    redbullQty>0
+  ){
+
+    var redbullMl =
+      redbullSize*
+      redbullQty;
+
+    carbs +=
+      redbullMl*
+      0.11;
+
+    kcal +=
+      redbullMl*
+      0.46;
+
+    lines.push(
+      "⚡ "+
+      redbullQty+
+      "× "+
+      redbullSize+
+      " ml Red Bull"
+    );
+
+  }
+
+
+  var monsterSize =
+    Number(
+      document.getElementById(
+        "monsterSize"
+      ).value
+    );
+
+  var monsterQty =
+    Number(
+      document.getElementById(
+        "monsterQty"
+      ).value
+    )||0;
+
+  if(
+    monsterQty>0
+  ){
+
+    var monsterMl =
+      monsterSize*
+      monsterQty;
+
+    carbs +=
+      monsterMl*
+      0.009;
+
+    kcal +=
+      monsterMl*
+      0.03;
+
+    lines.push(
+      "⚡ "+
+      monsterQty+
+      "× "+
+      monsterSize+
+      " ml Monster Ultra White"
+    );
+
+  }
+
+
+  var oranginaSize =
+    Number(
+      document.getElementById(
+        "oranginaSize"
+      ).value
+    );
+
+  var oranginaQty =
+    Number(
+      document.getElementById(
+        "oranginaQty"
+      ).value
+    )||0;
+
+  if(
+    oranginaQty>0
+  ){
+
+    var oranginaMl =
+      oranginaSize*
+      oranginaQty;
+
+    carbs +=
+      oranginaMl*
+      0.093;
+
+    kcal +=
+      oranginaMl*
+      0.39;
+
+    lines.push(
+      "🍊 "+
+      oranginaQty+
+      "× "+
+      oranginaSize+
+      " ml Orangina"
+    );
+
+  }
+
+
+  var fantaSize =
+    Number(
+      document.getElementById(
+        "fantaSize"
+      ).value
+    );
+
+  var fantaQty =
+    Number(
+      document.getElementById(
+        "fantaQty"
+      ).value
+    )||0;
+
+  if(
+    fantaQty>0
+  ){
+
+    var fantaMl =
+      fantaSize*
+      fantaQty;
+
+    carbs +=
+      fantaMl*
+      0.065;
+
+    kcal +=
+      fantaMl*
+      0.27;
+
+    lines.push(
+      "🍊 "+
+      fantaQty+
+      "× "+
+      fantaSize+
+      " ml Fanta"
+    );
+
+  }
+
+
+  var oasisSize =
+    Number(
+      document.getElementById(
+        "oasisSize"
+      ).value
+    );
+
+  var oasisQty =
+    Number(
+      document.getElementById(
+        "oasisQty"
+      ).value
+    )||0;
+
+  if(
+    oasisQty>0
+  ){
+
+    var oasisMl =
+      oasisSize*
+      oasisQty;
+
+    carbs +=
+      oasisMl*
+      0.061;
+
+    kcal +=
+      oasisMl*
+      0.26;
+
+    lines.push(
+      "🥭 "+
+      oasisQty+
+      "× "+
+      oasisSize+
+      " ml Oasis"
+    );
+
+  }
+
+
   /* BIÈRE */
 
-  var beerSize=
+  var beerSize =
     Number(
       document.getElementById(
         "beerSize"
@@ -1917,6 +2395,66 @@ document.getElementById(
 
 document.getElementById(
   "cokeQty"
+).oninput=
+  calculate;
+
+
+document.getElementById(
+  "redbullSize"
+).onchange=
+  calculate;
+
+
+document.getElementById(
+  "redbullQty"
+).oninput=
+  calculate;
+
+
+document.getElementById(
+  "monsterSize"
+).onchange=
+  calculate;
+
+
+document.getElementById(
+  "monsterQty"
+).oninput=
+  calculate;
+
+
+document.getElementById(
+  "oranginaSize"
+).onchange=
+  calculate;
+
+
+document.getElementById(
+  "oranginaQty"
+).oninput=
+  calculate;
+
+
+document.getElementById(
+  "fantaSize"
+).onchange=
+  calculate;
+
+
+document.getElementById(
+  "fantaQty"
+).oninput=
+  calculate;
+
+
+document.getElementById(
+  "oasisSize"
+).onchange=
+  calculate;
+
+
+document.getElementById(
+  "oasisQty"
 ).oninput=
   calculate;
 
